@@ -218,7 +218,7 @@ class TrainerDataLoadingMixin(ABC):
                     f'Your {mode}_dataloader has shuffle=True, it is best practice to turn'
                     ' this off for validation and test dataloaders.')
 
-        if any([dl is None for dl in dataloaders]):
+        if any(dl is None for dl in dataloaders):
             rank_zero_warn("One of given dataloaders is None and it will be skipped.")
 
         # add samplers

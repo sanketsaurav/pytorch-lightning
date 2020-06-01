@@ -316,7 +316,7 @@ class TrainerDDPMixin(ABC):
                 id_str = ','.join(str(x) for x in list(range(data_parallel_device_ids)))
                 os.environ["CUDA_VISIBLE_DEVICES"] = id_str
             else:
-                gpu_str = ','.join([str(x) for x in data_parallel_device_ids])
+                gpu_str = ','.join(str(x) for x in data_parallel_device_ids)
                 os.environ["CUDA_VISIBLE_DEVICES"] = gpu_str
 
         # don't make this debug... this is good UX

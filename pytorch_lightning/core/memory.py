@@ -172,7 +172,7 @@ def _format_summary_table(*cols) -> str:
 
     # Layer counter
     counter = list(map(str, list(range(n_rows))))
-    counter_len = max([len(c) for c in counter])
+    counter_len = max(len(c) for c in counter)
 
     # Get formatting length of each column
     length = []
@@ -180,7 +180,7 @@ def _format_summary_table(*cols) -> str:
         str_l = len(c[0])  # default length is header length
         for a in c[1]:
             if isinstance(a, np.ndarray):
-                array_string = '[' + ', '.join([str(j) for j in a]) + ']'
+                array_string = '[' + ', '.join(str(j) for j in a) + ']'
                 str_l = max(len(array_string), str_l)
             else:
                 str_l = max(len(a), str_l)
@@ -197,7 +197,7 @@ def _format_summary_table(*cols) -> str:
         line = s.format(counter[i], counter_len)
         for c, l in zip(cols, length):
             if isinstance(c[1][i], np.ndarray):
-                array_string = '[' + ', '.join([str(j) for j in c[1][i]]) + ']'
+                array_string = '[' + ', '.join(str(j) for j in c[1][i]) + ']'
                 line += ' | ' + array_string + ' ' * (l - len(array_string))
             else:
                 line += ' | ' + s.format(c[1][i], l)
